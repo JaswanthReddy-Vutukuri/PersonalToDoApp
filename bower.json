@@ -2,9 +2,9 @@
   "name": "Angular-MongoDb-CRUD",
   "version": "0.0.1",
   "authors": [
-    "Michael Cullen"
+    "Jaswanth"
   ],
-  "description": "CRUD Todo connected to Mongo DB",
+  "description": "CRUD Todo connected to Mongo DB Included with JWT",
   "ignore": [
     "**/*.txt",
     "node_modules",

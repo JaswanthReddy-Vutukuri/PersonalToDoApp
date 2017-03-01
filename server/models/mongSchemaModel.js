@@ -50,12 +50,6 @@ var todoSchema = new Schema({
 	done : Boolean
 });
 
-var userSchema = new Schema({
-	firstName : String,
-	lastName  : String,
-	username  : String,
-	password  : String
-});
 //To add additional keys later, use the Schema#add method
 
 /**
@@ -63,7 +57,6 @@ var userSchema = new Schema({
  * make Model available to us outside this script.
  */
 module.exports = mongoose.model('Todo', todoSchema );
-module.exports = mongoose.model('User', userSchema );
 
 /**
  * Open Mongoose Connection to DB

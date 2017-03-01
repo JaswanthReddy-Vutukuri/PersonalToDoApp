@@ -1,9 +1,9 @@
 {
-  "name": "Node-Mongo-Angular-Todo",
+  "name": "Node-Mongo-Angular-Todo-JWT",
   "version": "0.0.1",
-  "description": "App demonstrating MongoDb connection using Mongoose.",
+  "description": "App demonstrating MEAN Technology with JWT.",
   "main": "node server.js",
-  "author": "Michael Cullen",
+  "author": "Jaswanth",
   "dependencies": {
     "body-parser": "~1.0.2",
     "colors": "^0.6.2",

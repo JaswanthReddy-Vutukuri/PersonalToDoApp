@@ -9,7 +9,7 @@ angular.module('meanApp.controllers', [])
  * Controller - ToDoCtrl
  */
 .controller('MainCtrl', function($http, $q, getTodosService,
-    createTodoService, updateTodoService, deleteTodoService, $log) {
+    createTodoService, updateTodoService, deleteTodoService, $log, $window) {
 
     var main =this;
     main.formData = {};
@@ -19,8 +19,8 @@ angular.module('meanApp.controllers', [])
      */
     getTodosService.getTodos()
     .then(function(answer) {
-        console.log(answer);
         main.todos = answer;
+        main.username = $window.sessionStorage.username;
     },
     function(error) {
         console.log("OOPS!!!! " + JSON.stringify(error));
@@ -81,7 +81,7 @@ angular.module('meanApp.controllers', [])
         console.log(vm.formData);
         createUserService.createUser(vm.formData)
         .then(function(answer) {
-            alert("User Successfully Added!");
+            console.log("User Successfully Added!");
         },
         function(error) {
             console.log("Error Creating User!!!! " + JSON.stringify(error));

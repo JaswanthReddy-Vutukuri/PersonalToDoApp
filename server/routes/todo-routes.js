@@ -41,6 +41,7 @@ module.exports = {
     getTodos : function(req, res) {
         //use mongoose to get all todos in the database
         TodoModel.find(function(err, todos) {
+        	console.log(todos);
             //On error send the error. 
             if (err) {
             	return res.send(err);

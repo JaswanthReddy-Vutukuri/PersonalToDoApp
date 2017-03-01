@@ -20,13 +20,12 @@ require('colors');
 Models Used in the application - on Server end
 =============================================================================*/
 var TodoModel  = require('./server/models/mongSchemaModel');
-var UserModel  = require('./server/models/mongSchemaModel');
+var UserModel  = require('./server/models/User');
 
 /*===============================================================================
 Routes Used in the application - on Server end
 =============================================================================*/
 var todoRoutes = require('./server/routes/todo-routes.js');	//Exchange routes
-var userRoutes = require('./server/routes/user-routes.js');	//Exchange routes
 
 /* ============================================================================
 Create a new application with Express
@@ -151,12 +150,12 @@ apiRoutes.use(function(req, res, next) {
 // ---------------------------------------------------------
 // authenticated routes
 // ---------------------------------------------------------
-	apiRoutes.post('/todos', todoRoutes.createTodo);
-	apiRoutes.get('/todos', todoRoutes.getTodos);
-	apiRoutes.put('/todos/:todo_id', todoRoutes.updateTodo);
-	apiRoutes.delete('/todos/:todo_id', todoRoutes.deleteTodo);
+apiRoutes.post('/todos', todoRoutes.createTodo);
+apiRoutes.get('/todos', todoRoutes.getTodos);
+apiRoutes.put('/todos/:todo_id', todoRoutes.updateTodo);
+apiRoutes.delete('/todos/:todo_id', todoRoutes.deleteTodo);
 
-	app.use('/api', apiRoutes);
+app.use('/api', apiRoutes);
 
 /* ============================================================================
 Create HTTP Server using Express
