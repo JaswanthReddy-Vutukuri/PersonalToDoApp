@@ -7,6 +7,7 @@ A CRUD App using the $HTTP service with verbs post, get, put and delete and buil
 - MongoDB
 - Mongoose
 - Bootstrap
+- JWT
 
 Node/Express provides the RESTful API that connects to MongoDB. 
 Angular accesses the RESTful api via $http
@@ -15,9 +16,6 @@ The program is mainly based on a Node Todo Tutorial on [scotch.io](http://scotch
 
 A gulp gulpfile.js is configured with various tasks that can filter, concatenate, minify and watch different file types e.g. JS, CSS, HTML. 
 
-
-
-## Latest Changes (2015)
 
 - Angular Controller As syntax instead of using $scope ($scope will be gone in Angular 2.x)
 - fully responsive 
@@ -43,10 +41,5 @@ A gulp gulpfile.js is configured with various tasks that can filter, concatenate
 * node server.js - start up Node\Express server
 * Browse to http://localhost:3080
 
-
-<hr>
-
-<div align="center">
-Michael Cullen <br/>
-2014
-</div>
+Referred: https://github.com/mick26/CRUD-Todo-MEAN
+https://github.com/scotch-io/node-token-authentication
