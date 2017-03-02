@@ -10,14 +10,15 @@ angular.module('meanApp.services', []).
  */
 factory('getTodosService', function($http, $q, $window) {
     
-    var token = $window.sessionStorage.accessToken;
+    var token    = $window.localStorage.userToken;
+    var username = $window.localStorage.userName;
     
     /*=========================================================================
     READ - $http get
     ======================================================================== */
     var getTodos = function() {
         var deferred = $q.defer();
-        $http.get('/api/todos/', {params: {token: token}}).
+        $http.get('/api/todos/', {params: {token: token,username:username}}).
         success(function(data) {
             console.log(data);
             deferred.resolve(data);
@@ -38,14 +39,15 @@ factory('getTodosService', function($http, $q, $window) {
  */
 factory('createTodoService', function($http, $q, $window) {
 
-    var token = $window.sessionStorage.accessToken;
+    var token    = $window.localStorage.userToken;
+    var username = $window.localStorage.userName;
 
     /*=========================================================================
     CREATE - $http post
     ======================================================================== */
     var createTodo = function(todo) {
         var deferred = $q.defer();
-        $http.post('/api/todos/', todo, {params: {token: token}}).
+        $http.post('/api/todos/', todo, {params: {token: token, username: username}}).
         success(function(data) {
             deferred.resolve(data);
         }).
@@ -65,7 +67,8 @@ factory('createTodoService', function($http, $q, $window) {
  */
 factory('updateTodoService', function($http, $q, $window) {
 
-    var token = $window.sessionStorage.accessToken;
+    var token    = $window.localStorage.userToken;
+    var username = $window.localStorage.userName;
 
     /*=========================================================================
     UPDATE - $http put
@@ -74,7 +77,7 @@ factory('updateTodoService', function($http, $q, $window) {
 	    
         var deferred = $q.defer();
 
-        $http.put('/api/todos/' + id, updateData, {params: {token: token}}).
+        $http.put('/api/todos/' + id, updateData, {params: {token: token,username: username}}).
         success(function(data) {
             deferred.resolve(data);
         }).
@@ -94,7 +97,8 @@ factory('updateTodoService', function($http, $q, $window) {
  */
 factory('deleteTodoService', function($http, $q, $window) {
 
-    var token = $window.sessionStorage.accessToken;
+    var token    = $window.localStorage.userToken;
+    var username = $window.localStorage.userName;
 
     /*=========================================================================
     DELETE - $http delete
@@ -102,7 +106,7 @@ factory('deleteTodoService', function($http, $q, $window) {
     var deleteTodo = function(id) {
 
         var deferred = $q.defer();
-        $http.delete('/api/todos/' + id, {params: {token: token}}).
+        $http.delete('/api/todos/' + id, {params: {token: token,username: username}}).
         success(function(data) {
             deferred.resolve(data);
         }).

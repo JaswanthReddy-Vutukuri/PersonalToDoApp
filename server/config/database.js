@@ -3,5 +3,5 @@
 module.exports = {
 
 	//Local MongoDB
-	url : 'mongodb://localhost/todosApp'	
+	url : 'mongodb://localhost/meanApp'	
 }

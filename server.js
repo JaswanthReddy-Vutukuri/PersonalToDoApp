@@ -72,12 +72,12 @@ apiRoutes.post('/authenticate', function(req, res) {
 		if (err) throw err;
 
 		if (!user) {
-			res.json({ success: false, message: 'Authentication failed. User not found.' });
+			res.json({ success: false, message: 'Authentication failed. User not found.', status: 300 });
 		} else if (user) {
 
 			// check if password matches
 			if (user.password != req.body.password) {
-				res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+				res.json({ success: false, message: 'Authentication failed. Wrong password.', status: 300 });
 			} else {
 
 				// if user is found and password is right
@@ -88,7 +88,9 @@ apiRoutes.post('/authenticate', function(req, res) {
 
 				res.json({
 					success: true,
-					message: 'Enjoy your token!',
+					status: 200,
+					username: user.firstName+" "+user.lastName,
+					message: 'Successfully Logged In!!',
 					token: token
 				});
 			}		
@@ -107,8 +109,10 @@ apiRoutes.post('/users', function(req, res){
 	},
 	function(err, user) {
 		if (err) {
-			res.send(err);
-		};
+			res.json({ success: false, message: 'Adding User Failed' , status: 300 });
+		}else if(user){
+			res.json({ success: true, message: 'Added User Successfully' , status: 200 });
+		}
 	});
 });
 
@@ -126,7 +130,7 @@ apiRoutes.use(function(req, res, next) {
 		// verifies secret and checks exp
 		jwt.verify(token, app.get('superSecret'), function(err, decoded) {			
 			if (err) {
-				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+				return res.json({ success: false, message: 'Failed to authenticate token.' , status: 300 });		
 			} else {
 				// if everything is good, save to request for use in other routes
 				req.decoded = decoded;	

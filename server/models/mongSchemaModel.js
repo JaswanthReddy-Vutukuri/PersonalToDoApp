@@ -46,8 +46,9 @@ var Schema = mongoose.Schema;
  * identify each document in the DB
  */
 var todoSchema = new Schema({
-	text : String,
-	done : Boolean
+	text     : String,
+	username : String,
+	done     : Boolean
 });
 
 //To add additional keys later, use the Schema#add method

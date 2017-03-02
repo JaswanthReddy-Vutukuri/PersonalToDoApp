@@ -14,9 +14,13 @@ module.exports = {
     ======================================================================== */
     createTodo:function(req, res) {
         //create a todo, information comes from AJAX request from Angular
+
+        var username = req.body.username;
+
         TodoModel.create({
-        	text : req.body.text,
-        	done : false
+        	text     : req.body.text,
+        	username : username,
+        	done     : false
 		},
 		function(err, todo) {
 			if (err) {
@@ -24,7 +28,7 @@ module.exports = {
 			};
 
 			//get and return all the todos after you create another
-			TodoModel.find(function(err, todos) {
+			TodoModel.find({username : username},function(err, todos) {
 				if (err) {
 					return res.send(err);
 				}
@@ -39,8 +43,11 @@ module.exports = {
     READ - $http get
     ======================================================================== */
     getTodos : function(req, res) {
+
+		var username = req.param('username');
+		console.log(username);
         //use mongoose to get all todos in the database
-        TodoModel.find(function(err, todos) {
+        TodoModel.find({username:username},function(err, todos) {
         	console.log(todos);
             //On error send the error. 
             if (err) {
@@ -56,9 +63,10 @@ module.exports = {
 	UPDATE - $http put
 	======================================================================== */
     updateTodo:function(req, res) {
-	    var query = { "_id" : req.params.todo_id };
-        var update = {text: req.body.text, done: req.body.done};
-        var id = req.params.todo_id;
+	    var query    = { "_id" : req.params.todo_id };
+        var update   = {text: req.body.text, done: req.body.done};
+        var id       = req.params.todo_id;
+		var username = req.param('username');
 
         TodoModel.findByIdAndUpdate(id ,update, function(err, todo) {
 			
@@ -66,7 +74,7 @@ module.exports = {
                 res.send(err);
             };
 			// get and return all the todos after you Update one
-            TodoModel.find(function(err, todos) {
+            TodoModel.find({username:username},function(err, todos) {
 			    if (err) {
 			        return res.send(err);
 			    }
@@ -81,6 +89,9 @@ module.exports = {
     DELETE - $http delete
     ======================================================================== */
 	deleteTodo : function(req, res) {
+
+		var username = req.param('username');
+
 	    TodoModel.remove({
 	        _id : req.params.todo_id
 		},
@@ -91,7 +102,7 @@ module.exports = {
 		    };
 
 		    //get and return all the todos after you delete one
-		    TodoModel.find(function(err, todos) {
+		    TodoModel.find({username:username},function(err, todos) {
 		        if (err) {
 		    	    res.send(err)
 		        };
