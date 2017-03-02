@@ -9,7 +9,7 @@ angular.module('meanApp.controllers', [])
  * Controller - ToDoCtrl
  */
 .controller('MainCtrl', function($http, $q, getTodosService,
-    createTodoService, updateTodoService, deleteTodoService, $log, $window, $location, $route) {
+    createTodoService, updateTodoService, deleteTodoService, $log, $window, $state) {
 
     var main =this;
     var username = $window.localStorage["userName"];
@@ -68,7 +68,7 @@ angular.module('meanApp.controllers', [])
     };
 
     main.logOut = function() {
-        $location.path( "/" );
+        $state.go('login');
         $window.location.reload();
         console.log('Logged Out');
         return $window.localStorage.clear();
@@ -78,7 +78,7 @@ angular.module('meanApp.controllers', [])
 /**
  * Controller - registerCtrl
  */
-.controller('registerCtrl', function($http, $q,createUserService, $log, $location) {
+.controller('registerCtrl', function($http, $q,createUserService, $log, $state) {
 
     var vm =this;
     vm.formData = {};
@@ -91,7 +91,7 @@ angular.module('meanApp.controllers', [])
         .then(function(result) {
             if(result.status == 200){
                 console.log(result.message);
-                $location.path( "/" );
+                $state.go( "login" );
             }else{
                 console.log(result.message);
             }
@@ -105,7 +105,7 @@ angular.module('meanApp.controllers', [])
 /**
  * Controller - loginCtrl
  */
-.controller('loginCtrl', function($http, $q, authUserService, $log, $location, $window) {
+.controller('loginCtrl', function($http, $q, authUserService, $log, $state, $window) {
 
     var vm =this;
     vm.formData = {};
@@ -120,12 +120,12 @@ angular.module('meanApp.controllers', [])
             if(result.status == 200){
                 $window.localStorage["userToken"] = result.token;
                 $window.localStorage["userName"]  = result.username;
-                $location.path( "/todo" );
+                $state.go( "login" );
                 console.log(result.message);
             }
             else{
                 console.log(result.message);
-                $location.path( "/" );
+                $state.go( "login" );
             }
         },
         function(error) {

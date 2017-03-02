@@ -18,7 +18,7 @@ factory('getTodosService', function($http, $q, $window) {
     ======================================================================== */
     var getTodos = function() {
         var deferred = $q.defer();
-        $http.get('/api/todos/', {params: {token: token,username:username}}).
+        $http.get('/api/todos/', {params: {token: token,username: username}}).
         success(function(data) {
             console.log(data);
             deferred.resolve(data);
