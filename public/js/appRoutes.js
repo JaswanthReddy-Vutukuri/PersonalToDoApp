@@ -32,5 +32,4 @@ config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/');  
 
-    //$locationProvider.html5Mode(true);
 });
