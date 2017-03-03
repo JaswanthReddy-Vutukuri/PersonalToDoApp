@@ -3,7 +3,7 @@
 A CRUD App using the $HTTP service with verbs post, get, put and delete and built with:
 - NodeJS 
 - ExpressJS 
-- AngularJS
+- AngularJS,UI-Router
 - MongoDB
 - Mongoose
 - Bootstrap
