@@ -12,18 +12,18 @@ config(function ($stateProvider, $urlRouterProvider) {
             url: '/',
             templateUrl: 'views/login.html',
             controller: 'loginCtrl',
-            controllerAs: 'vm',
+            controllerAs: 'login',
             reloadOnSearch: false
         })
     .state('register', {
             url: '/register',
             templateUrl: 'views/register.html',
             controller: 'registerCtrl',
-            controllerAs: 'vm',
+            controllerAs: 'register',
             reloadOnSearch: false
         })
     .state('todo', {
-            url: '/',
+            url: '/todo',
             templateUrl: 'views/todo.html',
             controller: 'MainCtrl',
             controllerAs: 'main',

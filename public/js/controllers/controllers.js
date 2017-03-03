@@ -80,14 +80,14 @@ angular.module('meanApp.controllers', [])
  */
 .controller('registerCtrl', function($http, $q,createUserService, $log, $state) {
 
-    var vm =this;
-    vm.formData = {};
+    var register =this;
+    register.formData = {};
     /*
      * Create a New User
      */
-    vm.createUser = function() {
-        console.log(vm.formData);
-        createUserService.createUser(vm.formData)
+    register.createUser = function() {
+        console.log(register.formData);
+        createUserService.createUser(register.formData)
         .then(function(result) {
             if(result.status == 200){
                 console.log(result.message);
@@ -107,14 +107,14 @@ angular.module('meanApp.controllers', [])
  */
 .controller('loginCtrl', function($http, $q, authUserService, $log, $state, $window) {
 
-    var vm =this;
-    vm.formData = {};
+    var login =this;
+    login.formData = {};
     /*
      * Authenticate User
      */
-    vm.authUser = function() {
-        console.log(vm.formData);
-        authUserService.authUser(vm.formData)
+    login.authUser = function() {
+        console.log(login.formData);
+        authUserService.authUser(login.formData)
         .then(function(result) {
             console.log(result);
             if(result.status == 200){
