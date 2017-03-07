@@ -120,7 +120,7 @@ angular.module('meanApp.controllers', [])
             if(result.status == 200){
                 $window.localStorage["userToken"] = result.token;
                 $window.localStorage["userName"]  = result.username;
-                $state.go( "login" );
+                $state.go( "todo" );
                 console.log(result.message);
             }
             else{
